@@ -15,6 +15,10 @@ echo -e ""
 
 export $(grep -v '^#' .env | xargs) >> /dev/null 2>&1 
 
+if [ -z ${VITE_TITLE+x} ]; then
+    export VITE_TITLE="LN Swap"
+fi
+
 if [ -z ${LNBITS_MAIN_WALLET_ADMIN_KEY+x} ]; then
     LNBITS_URL=$(echo $LNBITS_HOST | awk '{gsub("/api",""); print}')"/wallet?nme=default"
     LNBITS_URL=$(echo $LNBITS_URL | awk '{gsub("host.docker.internal","127.0.0.1"); print}')
