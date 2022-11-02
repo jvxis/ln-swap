@@ -4,8 +4,10 @@ import { percentage } from "../../helpers";
 import Vincent from "../../lib/vincent";
 import './index.css';
 
+var VITE_TITLE = "LN Swap"
 if (import.meta.env.VITE_TITLE) {
-  document.title = import.meta.env.VITE_TITLE;
+  VITE_TITLE = import.meta.env.VITE_TITLE
+  document.title = VITE_TITLE;
 }
 
 var VITE_VINCENT_BACKEND = window.location.protocol + "//" + window.location.hostname + ":1536"
@@ -87,7 +89,7 @@ function Swap() {
     <>
       <div className="container">
         <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
-          <h1 className="title"> {import.meta.env.VITE_TITLE} </h1>
+          <h1 className="title"> {VITE_TITLE} </h1>
         </div>
         
         <div className="box">
