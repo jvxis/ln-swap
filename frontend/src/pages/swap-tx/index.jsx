@@ -12,6 +12,11 @@ import Alert from "../../assets/alert.json";
 
 import "./styles.css"
 
+var VITE_VINCENT_BACKEND = window.location.protocol + "//" + window.location.hostname + ":1536"
+if (import.meta.env.VITE_VINCENT_BACKEND) {
+    VITE_VINCENT_BACKEND = import.meta.env.VITE_VINCENT_BACKEND
+}
+
 function SwapTx() {
     const { txid } = useParams();
     const [ tx, setTx ] = useState({});
@@ -21,7 +26,7 @@ function SwapTx() {
     const [ status, setStatus ] = useState();
     
     const navigate = useNavigate()
-    const vincent = new Vincent(import.meta.env.VITE_VINCENT_BACKEND);
+    const vincent = new Vincent(VITE_VINCENT_BACKEND);
     
     useEffect(() => {
         vincent.get_lookup(txid).then((r) => {
