@@ -4,7 +4,14 @@ import { percentage } from "../../helpers";
 import Vincent from "../../lib/vincent";
 import './index.css';
 
-document.title = import.meta.env.VITE_TITLE;
+if (import.meta.env.VITE_TITLE) {
+  document.title = import.meta.env.VITE_TITLE;
+}
+
+var VITE_VINCENT_BACKEND = window.location.protocol + "//" + window.location.hostname + ":1536"
+if (import.meta.env.VITE_VINCENT_BACKEND) {
+  VITE_VINCENT_BACKEND = import.meta.env.VITE_VINCENT_BACKEND
+}
 
 function Swap() {
   const [ disableButton, setDisableButton ] = useState(true);
@@ -20,7 +27,7 @@ function Swap() {
   const [ total, setTotal ] = useState(0);
 
   const navigate = useNavigate();
-  const vincent = new Vincent(import.meta.env.VITE_VINCENT_BACKEND);
+  const vincent = new Vincent(VITE_VINCENT_BACKEND);
 
   function createNewSwap() {
     setDisableButton(true);
