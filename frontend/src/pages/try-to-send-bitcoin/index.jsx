@@ -9,6 +9,11 @@ import Vincent from "../../lib/vincent";
 
 import Lottie from "lottie-react";
 
+var VITE_VINCENT_BACKEND = window.location.protocol + "//" + window.location.hostname + ":1536"
+if (import.meta.env.VITE_VINCENT_BACKEND) {
+    VITE_VINCENT_BACKEND = import.meta.env.VITE_VINCENT_BACKEND
+}
+
 function TryToSendBitcoin() {
     const { txid } = useParams();
 
@@ -22,7 +27,7 @@ function TryToSendBitcoin() {
     const [ tx, setTx ] = useState({});
 
     const navigate = useNavigate();
-    const vincent = new Vincent(import.meta.env.VITE_VINCENT_BACKEND);
+    const vincent = new Vincent(VITE_VINCENT_BACKEND);
 
     useEffect(() => {
         (txid) && vincent.get_lookup(txid).then((r) => {
