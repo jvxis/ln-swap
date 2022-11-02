@@ -1,10 +1,19 @@
 #!/bin/bash
 
-export $(grep -v '^#' .env | xargs) >> /dev/null 2>&1 
+cat <<EOF
+ _______ _________ _______  _______ _________
+(  ____ \\__   __/(  ___  )(  ____ )\__   __/
+| (    \/   ) (   | (   ) || (    )|   ) (   
+| (_____    | |   | (___) || (____)|   | |   
+(_____  )   | |   |  ___  ||     __)   | |   
+      ) |   | |   | (   ) || (\ (      | |   
+/\____) |   | |   | )   ( || ) \ \__   | |   
+\_______)   )_(   |/     \||/   \__/   )_(   
+EOF
 
-if [ -z ${LND_MACAROON+x} ]; then
-    export LND_MACAROON=$(sudo xxd -ps -u -c 1000 "~/.lnd/data/chain/bitcoin/mainnet/admin.macaroon")
-fi
+echo -e ""
+
+export $(grep -v '^#' .env | xargs) >> /dev/null 2>&1 
 
 if [ -z ${LNBITS_MAIN_WALLET_ADMIN_KEY+x} ]; then
     LNBITS_URL=$(echo $LNBITS_HOST | awk '{gsub("/api",""); print}')"/wallet?nme=default"
@@ -23,3 +32,19 @@ if [ -z ${LNBITS_MAIN_WALLET_ADMIN_KEY+x} ]; then
 fi
 
 docker-compose --env-file .env up -d
+clear 
+
+FRONTEND_URL="http://"$(hostname)":4173"
+
+cat <<EOF
+
+LL      NN   NN   SSSSS  WW      WW   AAA   PPPPPP  
+LL      NNN  NN  SS      WW      WW  AAAAA  PP   PP 
+LL      NN N NN   SSSSS  WW   W  WW AA   AA PPPPPP  
+LL      NN  NNN       SS  WW WWW WW AAAAAAA PP      
+LLLLLLL NN   NN   SSSSS    WW   WW  AA   AA PP     
+
+URL:  ${FRONTEND_URL}
+EOF
+
+echo -e ""
