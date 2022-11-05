@@ -34,10 +34,12 @@ function SwapTx() {
     const navigate = useNavigate()
     const vincent = new Vincent(VITE_VINCENT_BACKEND);
 
-    if (window.location.href.includes(".onion")) {
-        setExplorerURL("http://explorerzydxu5ecjrkwceayqybizmpjjznk5izmitf2modhcusuqlid.onion/tx/")
-    }
-
+    useEffect(() => {
+        if (window.location.href.includes(".onion")) {
+            setExplorerURL("http://explorerzydxu5ecjrkwceayqybizmpjjznk5izmitf2modhcusuqlid.onion/tx/")
+        }    
+    }, [])
+    
     useEffect(() => {
         vincent.get_lookup(txid).then((r) => {
             const data = r.data;
