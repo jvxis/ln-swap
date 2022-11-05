@@ -13,8 +13,12 @@ import Alert from "../../assets/alert.json";
 import "./styles.css"
 
 var VITE_VINCENT_BACKEND = window.location.protocol + "//" + window.location.hostname + ":1536"
-if (import.meta.env.VITE_VINCENT_BACKEND) {
+if ((window.location.href.includes(".onion")) && (import.meta.env.VITE_VINCENT_BACKEND_TOR)) {
+  VITE_VINCENT_BACKEND = import.meta.env.VITE_VINCENT_BACKEND_TOR
+} else {
+  if (import.meta.env.VITE_VINCENT_BACKEND) {
     VITE_VINCENT_BACKEND = import.meta.env.VITE_VINCENT_BACKEND
+  }  
 }
 
 function SwapTx() {
@@ -63,8 +67,6 @@ function SwapTx() {
                 const data = r.data
                 setTx(data);
                 setStatus(data.status);
-            }).catch(() => {
-                setStatus("canceled")
             })
         }, 5000))
         return () => clearInterval(check_tx);
@@ -78,7 +80,7 @@ function SwapTx() {
         );
     }
     
-    if (( status === "reedem" )) {
+    if (status === "reedem") {
         return (
             <div className="container">
                 <Lottie loop={false} animationData={Alert} style={{ height: 350, width: 350 }} />
@@ -92,22 +94,7 @@ function SwapTx() {
             </div>
         )
     }
-
-    if ((status === "canceled"))  {
-        return (
-            <div className="container">
-                <Lottie loop={false} animationData={Canceled} style={{ height: 350, width: 350 }} />
-                <p> Your transaction has been cancelled. </p>
-                <button 
-                    className="button-go-back"
-                    onClick={() => navigate("/")}
-                >
-                    Go back
-                </button>
-            </div>
-        )
-    }
-
+    
     if (status === "settled") {
         return (
             <div className="container">
@@ -140,7 +127,7 @@ function SwapTx() {
         )
     }
 
-    if ((counter < -1)) {
+    if (counter < -1) {
         navigate("/")
     }
 
