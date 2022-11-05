@@ -38,7 +38,7 @@ fi
 docker-compose --env-file .env up -d
 clear 
 
-FRONTEND_URL="http://"$(hostname)":4173"
+FRONTEND_URL="http://"$(hostname)":5173"
 
 cat <<EOF
 
