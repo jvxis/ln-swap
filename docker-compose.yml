@@ -18,9 +18,6 @@ services:
     container_name: lightning-swap-frontend
     ports:
       - 5173:5173
-    environment:
-      - VITE_VINCENT_BACKEND=${VITE_VINCENT_BACKEND}
-      - VITE_TITLE=${VITE_TITLE}
     volumes:
       - ./frontend/src:/app/src
     restart: on-failure
@@ -48,9 +45,6 @@ services:
       - LNBITS_WEBHOOK_URL=${LNBITS_WEBHOOK_URL}
       - LNBITS_MAIN_WALLET_ADMIN_KEY=${LNBITS_MAIN_WALLET_ADMIN_KEY}
       - LNBITS_MAIN_WALLET_INVOICE_KEY=${LNBITS_MAIN_WALLET_INVOICE_KEY}
-
-      - LNBITS_SPLIT_WALLET_ADMIN_KEY=${LNBITS_SPLIT_WALLET_ADMIN_KEY}
-      - LNBITS_SPLIT_WALLET_INVOICE_KEY=${LNBITS_SPLIT_WALLET_INVOICE_KEY}
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
