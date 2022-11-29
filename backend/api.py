@@ -207,7 +207,9 @@ def create_swap(data: SwapSchema):
         description = f"Fees: {fee_network} sats | Earn: {fee_service} sats."
         amount_release = (amount + fee_network + fee_service)
         payment_invoice = create_invoice(amount_release, memo=description, expiry=INVOICE_EXPIRE)
-
+        if (payment_invoice.get("message")):
+            raise HTTPException(500, payment_invoice["message"]) 
+        
         txid = payment_invoice["payment_hash"]
         payload = {
             "id": txid, 
