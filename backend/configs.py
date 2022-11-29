@@ -38,6 +38,7 @@ SWAP_MIN_AMOUNT = int(environ.get("SWAP_MIN_AMOUNT", 100000))
 
 # Lnbits configuration.
 LNBITS_HOST = environ.get("LNBITS_HOST", "https://legend.lnbits.com/api")
+LNBITS_BASE_URL = environ.get("LNBITS_BASE_URL", "https://www.lnbits.com")
 LNBITS_WEBHOOK_URL = environ.get("LNBITS_WEBHOOK_URL", f"http://127.0.0.1:{API_PORT}/api/v1/lnbits/webhook")
 
 LNBITS_MAIN_WALLET_ADMIN_KEY = environ["LNBITS_MAIN_WALLET_ADMIN_KEY"]
