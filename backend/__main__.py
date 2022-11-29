@@ -11,7 +11,6 @@ from services.lnd import lnd
 from configs import PATH, LNBITS_HOST
 from json import dumps
 
-import requests
 import logging
 import sys
 import api
@@ -23,14 +22,6 @@ try:
     print(dumps(get_info, indent=3))
 except:
     logging.critical("Unable to start the service because your node is not online or your instance has been misconfigured.")
-    logging.critical("Exit")
-    sys.exit(0)
-
-try:
-    get_wallet = lnbits.get_wallet()
-    print(dumps(get_wallet, indent=3))
-except:
-    logging.critical("Lnbits service unavailable.")
     logging.critical("Exit")
     sys.exit(0)
 
