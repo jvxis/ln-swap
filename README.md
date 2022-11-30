@@ -14,6 +14,6 @@ nano .env
 2 - With the configuration done now you can start the application with a simple command.
 
 ```bash
-bash ./scripts/start.sh
+docker-compose --env-file .env up -d
 ```
 <b>Now access:</b> http://localhost:5173
