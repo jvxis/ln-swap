@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package.json /app
 COPY package-lock.json /app
 COPY . /app
+COPY scripts /app
 RUN npm i
 EXPOSE 5173
-ENTRYPOINT [ "docker-entrypoint.sh" ]
-CMD [ "npm", "run", "preview" ]
+CMD [ "sh", "/app/scripts/start.sh" ]
