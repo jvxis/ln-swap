@@ -57,7 +57,6 @@ function Swap() {
   useEffect(() => {
     vincent.get_info().then((r) => {
       const data = r.data;
-      console.log(data)
       setMinAmount(data.swap.min_amount);
       setMaxAmount(data.swap.max_amount);
       setService(data.fees.service);
@@ -77,13 +76,13 @@ function Swap() {
       setLiquidity(false);
     }
 
-    if ((address.length >= 32) && (address.slice(0, 2) === "bc") && (feerate >= 1) && (amount >= minAmount) && (amount <= maxAmount) && (available == true) && (liquidity === true)) {
+    if ((address.length >= 32) && (feerate >= 1) && (amount >= minAmount) && (amount <= maxAmount) && (available == true) && (liquidity === true)) {
       setDisableButton(false);
     } else {
       setDisableButton(true);
     }
 
-    if ((address.length >= 32) && (address.slice(0, 2) === "bc") && (amount >= minAmount)) {
+    if ((address.length >= 32) && (amount >= minAmount)) {
       vincent.get_estimate_fee(address, amount).then((r) => {
         const data = r.data;
         setfeeEstimate(data.fees);
