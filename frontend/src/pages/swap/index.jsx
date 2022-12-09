@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { validate as validateBitcoinAddress } from "bitcoin-address-validation";
 import { percentage } from "../../helpers";
 import Vincent from "../../lib/vincent";
 import Onion from "../../assets/onion.png"
@@ -77,13 +78,15 @@ function Swap() {
       setLiquidity(false);
     }
 
-    if ((address.length >= 32) && (address.slice(0, 2) === "bc") && (feerate >= 1) && (amount >= minAmount) && (amount <= maxAmount) && (available == true) && (liquidity === true)) {
+    const isAddressValid = validateBitcoinAddress(address);
+
+    if (isAddressValid && (feerate >= 1) && (amount >= minAmount) && (amount <= maxAmount) && (available == true) && (liquidity === true)) {
       setDisableButton(false);
     } else {
       setDisableButton(true);
     }
 
-    if ((address.length >= 32) && (address.slice(0, 2) === "bc") && (amount >= minAmount)) {
+    if (isAddressValid && (amount >= minAmount)) {
       vincent.get_estimate_fee(address, amount).then((r) => {
         const data = r.data;
         setfeeEstimate(data.fees);
