@@ -32,7 +32,7 @@ REDIS_PORT = environ.get("REDIS_PORT", 6379)
 REDIS_PASS = environ.get("REDIS_PASS", "")
 
 # Swap configuration.
-SWAP_SERVICE_FEERATE = float(environ.get("SWAP_SERVICE_FEERATE", 0.5))
+SWAP_SERVICE_FEERATE = float(environ.get("SWAP_SERVICE_FEERATE", 20))
 SWAP_MAX_AMOUNT = int(environ.get("SWAP_MAX_AMOUNT", 100000000))
 SWAP_MIN_AMOUNT = int(environ.get("SWAP_MIN_AMOUNT", 100000))
 
