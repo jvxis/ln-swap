@@ -6,7 +6,7 @@ import Vincent from "../../lib/vincent";
 import Onion from "../../assets/onion.png"
 import './index.css';
 
-var VITE_TITLE = "LN Swap"
+var VITE_TITLE = "Iftiin Swap"
 if (import.meta.env.VITE_TITLE) {
   VITE_TITLE = import.meta.env.VITE_TITLE
   document.title = VITE_TITLE;
