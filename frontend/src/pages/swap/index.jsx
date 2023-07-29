@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { validate as validateBitcoinAddress } from "bitcoin-address-validation";
 import { percentage } from "../../helpers";
 import Vincent from "../../lib/vincent";
-import Onion from "../../assets/onion.png"
+import Onion from "../../assets/swap.png"
 import './index.css';
 
-var VITE_TITLE = "Iftiin Swap"
+var VITE_TITLE = "IFTIIN SWAP"
 if (import.meta.env.VITE_TITLE) {
   VITE_TITLE = import.meta.env.VITE_TITLE
   document.title = VITE_TITLE;
