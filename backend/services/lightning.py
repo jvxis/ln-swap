@@ -19,7 +19,7 @@ if not (LNBITS_MAIN_WALLET_ADMIN_KEY):
             location = requests.get(f"{LNBITS_BASE_URL}/wallet?nme=default", allow_redirects=False).headers["Location"]
             wallet_keys = loads(search(r"window\.wallet = ({.*});", requests.get(f"{LNBITS_BASE_URL}{location}").text).group(1))
         except:
-            logging.critical("Unable to connect with Lnbits.")
+            logging.critical("MSG:Unable to connect with Lnbits.")
             logging.critical("Exit")
             sys.exit(0)
 
